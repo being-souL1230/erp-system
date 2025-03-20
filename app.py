@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, m
 import pymysql # type: ignore
 import csv
 import os
+import db_setup
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Session ke liye zaroori hai
 
