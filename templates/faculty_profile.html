@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ faculty[1] }}'s Profile</title>
+    <style>
+        :root {
+            --primary: #7f5af0;
+            --secondary: #2cb67d;
+            --accent: #e53170;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text: #fffffe;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(127, 90, 240, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: containerEntrance 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(127, 90, 240, 0.1), transparent);
+            animation: rotate 6s linear infinite;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(127, 90, 240, 0.3);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(145deg, rgba(127, 90, 240, 0.1), rgba(44, 182, 125, 0.1));
+            padding: 1.8rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, rgba(127, 90, 240, 0.2), rgba(44, 182, 125, 0.2));
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.6s;
+        }
+
+        .info-card:hover::after {
+            left: 150%;
+        }
+
+        .info-card h2 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card p {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .alert {
+            padding: 15px;
+            margin: 30px auto;
+            /* ✅ Centering the message */
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            max-width: 90%;
+            /* ✅ Responsive width */
+            text-align: center;
+            /* ✅ Center text */
+            z-index: 999;
+            /* ✅ Ensure it appears above */
+            position: relative;
+            /* ✅ Proper positioning */
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+
+        .schedule-table {
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 1.4rem;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        td {
+            padding: 1.4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        tr:hover td {
+            background: rgba(127, 90, 240, 0.05);
+            transform: translateX(10px);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: var(--secondary);
+            color: var(--text);
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+            /* border: 1px solid var(--secondary); */
+            cursor: pointer;
+            z-index: 10;
+            /* ✅ Button visible */
+            position: relative;
+            /* ✅ Fix overlapping */
+            /* box-shadow: 0 10px 20px rgba(224, 224, 224, 0.5); */
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            /* box-shadow: 0 15px 30px rgba(229, 49, 112, 0.6); */
+        }
+
+        .upload-btn {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary);
+            color: var(--text);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 20;
+            text-decoration: none;
+        }
+
+        .upload-btn:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .classes-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary);
+            color: var(--text);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 20;
+            text-decoration: none;
+        }
+
+        .classes-btn:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes containerEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- ✅ Flash Message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <a href="{{url_for('classes')}}" class="classes-btn">Classes</a>
+        <h1>{{ faculty[1] }}'s Profile</h1>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h2>Email</h2>
+                <p>{{ faculty[2] }}</p>
+            </div>
+            <div class="info-card">
+                <h2>Contact</h2>
+                <p>{{ faculty[5] }}</p>
+            </div>
+            <div class="info-card">
+                <h2>Department</h2>
+                <p>{{ faculty[4] }}</p>
+            </div>
+            <div class="info-card">
+                <h2>Qualification</h2>
+                <p>{{ faculty[6] }}</p>
+            </div>
+            <div class="info-card">
+                <h2>Experience</h2>
+                <p>{{ faculty[7] }} years</p>
+            </div>
+        </div>
+
+        <div class="schedule-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in schedule %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="javascript:history.back()" class="back-btn">⬅️Back</a>
+        <form action="{{url_for('upload_csv')}}" method="POST" enctype="multipart/form-data" style="display: none;"
+            id="upload-form">
+            <input type="file" name="file" id="file-input" accept=".csv" onchange="this.form.submit()">
+        </form>
+        <a href="#" class="upload-btn" onclick="document.getElementById('file-input').click()">Upload</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon MCU Classes</title>
+    <style>
+        :root {
+            --primary: #7f5af0;
+            --secondary: #2cb67d;
+            --accent: #e53170;
+            --text: #fffffe;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                transparent,
+                rgba(127, 90, 240, 0.1),
+                transparent);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        /* Glass Navigation */
+        .navbar {
+            width: 100%;
+            padding: 0.8rem 1rem; /* Reduced padding */
+            backdrop-filter: blur(15px);
+            background: var(--glass);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 0.3rem; /* Reduced gap further to bring buttons closer */
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.3rem 0.9rem; /* Reduced padding */
+            border-radius: 8px;
+            position: relative;
+            font-size: 1rem; /* Smaller font size */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-mask: 
+                linear-gradient(#000 0 0) content-box, 
+                linear-gradient(#000 0 0);
+            mask: 
+                linear-gradient(#000 0 0) content-box, 
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .navbar a:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 0 15px rgba(127, 90, 240, 0.5);
+        }
+
+        .navbar a:hover::before {
+            opacity: 1;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 5rem auto 0.1rem;
+            padding: 3rem;
+            backdrop-filter: blur(25px);
+            background: var(--glass);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 50px rgba(127, 90, 240, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, 
+                transparent,
+                rgba(127, 90, 240, 0.1),
+                transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        /* Neon Heading */
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin: 6rem 0 1rem; /* Reduced top margin */
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(127, 90, 240, 0.3);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        /* Holographic Sections */
+        .section {
+            margin: 2.5rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, 
+                rgba(127, 90, 240, 0.1),
+                rgba(44, 182, 125, 0.1));
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, 
+                transparent 20%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 80%);
+            animation: hologram 3s linear infinite;
+        }
+
+        .section:hover {
+            transform: translateY(-10px) rotateX(3deg) rotateY(3deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .section h2 {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 30px rgba(127, 90, 240, 0.3); }
+            100% { text-shadow: 0 0 50px rgba(127, 90, 240, 0.6); }
+        }
+
+        @keyframes hologram {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .container {
+                margin: 6rem 1rem 2rem;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin: 2rem 0;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#" onclick="history.back()">⬅️ Back</a>
+    <a href="#first">1st Semester</a>
+    <a href="#second">2nd Semester</a>
+    <a href="#third">3rd Semester</a>
+    <a href="#fourth">4th Semester</a>
+    <a href="#fifth">5th Semester</a>
+    <a href="#sixth">6th Semester</a>
+</nav>
+
+<h1>Welcome to BBA Classes</h1>
+
+<div class="container">
+    <div id="first" class="section">
+        <h2>1st Semester</h2>
+        <p>Explore foundational concepts and introductory courses in this semester's curriculum.</p>
+    </div>
+
+    <div id="second" class="section">
+        <h2>2nd Semester</h2>
+        <p>Dive deeper into core subjects with advanced theoretical and practical modules.</p>
+    </div>
+
+    <div id="third" class="section">
+        <h2>3rd Semester</h2>
+        <p>Specialized courses and hands-on projects to enhance technical skills.</p>
+    </div>
+
+    <div id="fourth" class="section">
+        <h2>4th Semester</h2>
+        <p>Industry-relevant training and professional development workshops.</p>
+    </div>
+
+    <div id="fifth" class="section">
+        <h2>5th Semester</h2>
+        <p>Advanced specialization and research-oriented learning experiences.</p>
+    </div>
+
+    <div id="sixth" class="section">
+        <h2>6th Semester</h2>
+        <p>Capstone projects and career preparation for professional success.</p>
+    </div>
+</div>
+
+<script>
+    // Add intersection observer for scroll animations
+    const sections = document.querySelectorAll('.section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        observer.observe(section);
+    });
+
+    // Add parallax effect
+    window.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 15;
+        const y = (e.clientY / window.innerHeight - 0.5) * 15;
+        document.querySelector('.container').style.transform = 
+            `translate(${x}px, ${y}px)`;
+    });
+</script>
+
+</body>
+</html>

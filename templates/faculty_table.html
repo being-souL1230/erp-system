@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Directory</title>
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #A66CFF;
+            --glass: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2D2B4A, #18172C);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            backdrop-filter: blur(16px);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin: 2rem 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .data-table:hover {
+            transform: translateY(-5px);
+        }
+
+        .data-table thead {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        }
+
+        .data-table th {
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .data-table td {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .data-table tr {
+            transition: all 0.3s ease;
+        }
+
+        .data-table tr:not(:last-child) td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(108, 92, 231, 0.1);
+            transform: translateX(10px);
+        }
+
+        .data-table td:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .data-table td:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .search-bar {
+            margin: 2rem auto;
+            max-width: 600px;
+            background: var(--glass);
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .action-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .data-table td, .data-table th {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Faculty Directory</h1>
+        
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search faculty members...">
+        </div>
+
+        <table class="data-table" id="facultyTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for faculty in faculties %}
+                    <tr>
+                        <td>{{ faculty[0] }}</td>
+                        <td>{{ faculty[1] }}</td>
+                        <td>{{ faculty[2] }}</td>
+                        <td>
+                            <!-- Individual Profile Button -->
+                            <a href="{{ url_for('faculty_profile', faculty_id=faculty[0]) }}" class="action-button">View Profile</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function () {
+            let query = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#facultyTable tbody tr');
+            
+            rows.forEach(row => {
+                let cells = row.querySelectorAll('td');
+                let name = cells[1].textContent.toLowerCase();
+                let email = cells[2].textContent.toLowerCase();
+                
+                if (name.includes(query) || email.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

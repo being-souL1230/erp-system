@@ -1,0 +1,1537 @@
+<!-- theme number - 1 -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP System CMS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --border: rgba(255,255,255,0.1);
+        }
+
+        [data-theme="light"] {
+            --bg: #f1f5f9;
+            --text: #0f172a;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow: rgba(0, 0, 0, 0.1);
+            --border: rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        /* Remove underlines from all links */
+        a {
+            text-decoration: none;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 4px 30px var(--shadow);
+            border: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top-bar-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin: 0 0 5rem;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .login-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            justify-items: center;
+        }
+
+        .login-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .login-card:hover::before {
+            left: 100%;
+        }
+
+        .icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .role-name {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .btn-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hidden Contact buttons */
+        .social-btns {
+            display: none;
+            position: absolute;
+            top: 20%;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+            animation: rollIn 0.5s ease-in-out;
+        }
+
+        .social-btns a {
+            padding: 1rem;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-btns a:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes rollIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="top-bar">
+        <p class="top-bar-text">CMS ERP System</p>
+        <div class="btn-container">
+            <a href="#" class="nav-btn">
+                <i class="fas fa-book-open"></i>
+                Courses
+            </a>
+            <a href="#" class="nav-btn">
+                <i class="fas fa-calendar-check"></i>
+                Events
+            </a>
+            <a href="#" class="nav-btn">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+            <a href="#" class="nav-btn" id="contactBtn">
+                <i class="fas fa-phone-alt"></i>
+                Contact
+            </a>
+        </div>
+    </div>
+
+    
+    <div class="social-btns" id="socialBtns">
+        <a href="mailto:example@email.com" target="_blank" title="Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">ERP System Portal</h1>
+        </header>
+
+        <div class="login-options">
+            <div class="login-card" onclick="window.location.href='/student_login'">
+                <i class="fas fa-user-graduate icon"></i>
+                <h2 class="role-name">Student Portal</h2>
+                <p class="description">Access your academic records, course materials, attendance, and progress tracking</p>
+                <div class="btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Enter Dashboard
+                </div>
+            </div>
+
+            <div class="login-card" onclick="window.location.href='/faculty_login'">
+                <i class="fas fa-chalkboard-teacher icon"></i>
+                <h2 class="role-name">Faculty Portal</h2>
+                <p class="description">Manage courses, upload grades, track student progress, and analyze performance</p>
+                <div class="btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Access Portal
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Contact Buttons
+        const contactBtn = document.getElementById('contactBtn');
+        const socialBtns = document.getElementById('socialBtns');
+
+        contactBtn.addEventListener('click', () => {
+            socialBtns.style.display = socialBtns.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        // Toggle Theme Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- theme number - 2 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP System CMS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] {
+            --bg: #f1f5f9;
+            --text: #0f172a;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow: rgba(0, 0, 0, 0.1);
+            --border: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Info button style */
+        .info-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .info-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .info-btn:hover::after {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(200%) rotate(45deg);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 4px 30px var(--shadow);
+            border: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .top-bar {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            padding: 1.5rem 0;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top-bar-text {
+            color: var(--text);
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: 6rem;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .courses-btn,
+        .events-btn,
+        .about-btn,
+        .contact-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .courses-btn:hover,
+        .events-btn:hover,
+        .about-btn:hover,
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .courses-btn::after,
+        .events-btn::after,
+        .about-btn::after,
+        .contact-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .courses-btn:hover::after,
+        .events-btn:hover::after,
+        .about-btn:hover::after,
+        .contact-btn:hover::after {
+            animation: shine 1.5s;
+        }
+
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin: 0 0 5rem;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .title-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: -200px;
+            vertical-align: middle;
+        }
+
+        .login-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            justify-items: center;
+        }
+
+        .login-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+            width: 480px;
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 15px 45px var(--shadow);
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .login-card:hover::before {
+            left: 100%;
+        }
+
+        .icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover .icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .role-name {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        /* Add a moving glass effect on hover */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            animation: moveGlass 2s infinite linear;
+        }
+
+        /* Keyframes for the moving glass effect */
+        @keyframes moveGlass {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            50% {
+                transform: translateX(100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+        }
+
+        /* Hover effect */
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(200%) rotate(45deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* New styles for the contact section */
+        .contact-section {
+            display: none;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            border-radius: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .contact-section.show {
+            display: block;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas class="particles" id="particles"></canvas>
+
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="top-bar">
+        <img src="https://th.bing.com/th?id=OIP.QGtZfoOqQOdVan-8nT6bDAHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+            alt="Logo" class="title-image">
+        <p class="top-bar-text">Welcome to CMS ERP System</p>
+        <div class="btn-container">
+            <a href="#" class="info-btn">
+                <i class="fas fa-info-circle"></i>
+                Info
+            </a>
+            <a href="{{ url_for('courses') }}" class="courses-btn">
+                <i class="fas fa-book-open"></i>
+                Courses
+            </a>
+            <a href="#" class="events-btn">
+                <i class="fas fa-calendar-check"></i>
+                Events
+            </a>
+            <a href="#about" class="about-btn">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+            <a href="javascript:void(0);" class="contact-btn" id="contact-btn">
+                <i class="fas fa-phone-alt"></i>
+                Contact
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">CMS ERP SYSTEM</h1>
+        </header>
+
+        <div class="login-options">
+            <div class="login-card" onclick="window.location.href='/student_login'">
+                <i class="fas fa-user-graduate icon"></i>
+                <h2 class="role-name">Student Portal</h2>
+                <p class="description">Access academic records, attendance, course materials, and progress tracking</p>
+                <a class="btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Enter Dashboard
+                </a>
+            </div>
+
+            <div class="login-card" onclick="window.location.href='/faculty_login'">
+                <i class="fas fa-chalkboard-teacher icon"></i>
+                <h2 class="role-name">Faculty Portal</h2>
+                <p class="description">Access courses, manage grades, attendance, and interact with students</p>
+                <a class="btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Enter Dashboard
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="social-buttons">
+            <div class="social-btn">
+                <i class="fab fa-facebook"></i>
+                Facebook
+            </div>
+            <div class="social-btn">
+                <i class="fab fa-twitter"></i>
+                Twitter
+            </div>
+            <div class="social-btn">
+                <i class="fab fa-linkedin"></i>
+                LinkedIn
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="contact-section" id="contact-section">
+        <div class="contact-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>12/481, McRobert Ganj, Civil Lines,
+                Kanpur, Uttar Pradesh 208001</p>
+        </div>
+        <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <p>0512-2551176 , 8542030533</p>
+        </div>
+        <div class="contact-info">
+            <i class="fas fa-envelope"></i>
+            <p> cmskanpur@hotmail.com</p>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;  // This is the <html> element
+
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            htmlElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'light') {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';  // Moon icon for light mode
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';  // Sun icon for dark mode
+            }
+        }
+
+        themeToggle.addEventListener('click', function () {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                htmlElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // Contact section toggle functionality with smooth scrolling
+        document.getElementById('contact-btn').addEventListener('click', function () {
+            const contactSection = document.getElementById('contact-section');
+
+            // Toggle the visibility of the contact section
+            contactSection.classList.toggle('show');
+
+            // Smooth scroll to the contact section if it is shown
+            if (contactSection.classList.contains('show')) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- theme number - 3 -->
+
+
+
+<!-- 
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ERP System CMS</title>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+      <style>
+          :root {
+              --primary: #00ff9d;
+              --secondary: #7d12ff;
+              --accent: #ff007b;
+              --bg: #0a0a0a;
+              --text: #e0e0e0;
+              --glass: rgba(255, 255, 255, 0.05);
+              --shadow: rgba(0, 0, 0, 0.5);
+              --border: rgba(255,255,255,0.1);
+          }
+  
+          [data-theme="light"] {
+              --bg: #f5f5f5;
+              --text: #2d2d2d;
+              --glass: rgba(255, 255, 255, 0.9);
+              --shadow: rgba(0, 0, 0, 0.1);
+              --border: rgba(0,0,0,0.1);
+              --primary: #007bff;
+              --secondary: #6610f2;
+          }
+  
+          * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+  
+          body {
+              font-family: 'Poppins', sans-serif;
+              min-height: 100vh;
+              background: var(--bg);
+              color: var(--text);
+              position: relative;
+              overflow-x: hidden;
+              padding-top: 80px;
+          }
+  
+          /* Cyber Theme Toggle */
+          .theme-toggle {
+              position: fixed;
+              bottom: 2rem;
+              right: 2rem;
+              width: 50px;
+              height: 50px;
+              background: var(--glass);
+              backdrop-filter: blur(12px);
+              border-radius: 50%;
+              cursor: pointer;
+              display: grid;
+              place-items: center;
+              z-index: 1000;
+              animation: pulse 2s infinite;
+          }
+  
+          .theme-toggle i {
+              filter: drop-shadow(0 0 5px var(--primary));
+          }
+  
+          .top-bar {
+              background: var(--glass);
+              backdrop-filter: blur(16px);
+              padding: 1.5rem 0;
+              width: 100%;
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 100;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 1rem 2rem;
+              border-bottom: 1px solid var(--border);
+          }
+  
+          .top-bar-text {
+              color: var(--text);
+              font-size: 1.5rem;
+              font-weight: bold;
+              background: linear-gradient(45deg, var(--primary), var(--secondary));
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+          }
+  
+          .btn-container {
+              display: flex;
+              gap: 1rem;
+          }
+  
+          .courses-btn, .events-btn, .about-btn, .contact-btn {
+              padding: 1rem 2rem;
+              background: linear-gradient(45deg, var(--primary), var(--secondary));
+              color: white;
+              border: none;
+              border-radius: 2rem;
+              font-size: 1rem;
+              font-weight: 500;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              text-decoration: none;
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+          }
+  
+          .courses-btn:hover, .events-btn:hover, .about-btn:hover, .contact-btn:hover {
+              transform: translateY(-2px);
+          }
+  
+          .particles {
+              position: fixed;
+              width: 100%;
+              height: 100%;
+              pointer-events: none;
+              z-index: 1;
+          }
+  
+          .container {
+              position: relative;
+              z-index: 2;
+              padding: 4rem 2rem;
+              max-width: 1400px;
+              margin: 0 auto;
+          }
+  
+          .header {
+              text-align: center;
+              margin: 0 0 5rem;
+              position: relative;
+          }
+  
+          .title {
+              font-size: 4rem;
+              font-weight: 700;
+              background: linear-gradient(45deg, var(--primary), var(--secondary));
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              animation: fadeIn 1s ease-out;
+              position: relative;
+              display: inline-block;
+              padding: 0 2rem;
+          }
+  
+          .login-options {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); 
+              gap: 2rem;
+              margin-top: 4rem;
+              justify-items: center;
+          }
+  
+          .login-card {
+              background: var(--glass);
+              backdrop-filter: blur(16px);
+              padding: 2rem;
+              border-radius: 2rem;
+              border: 1px solid var(--border);
+              text-align: center;
+              cursor: pointer;
+              position: relative;
+              overflow: hidden;
+              min-height: 350px;
+              width: 480px;
+              max-width: 520px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+          }
+  
+          .login-card:hover {
+              transform: translateY(-5px);
+          }
+  
+          .login-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: -100%;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                  90deg,
+                  transparent,
+                  rgba(255,255,255,0.1),
+                  transparent
+              );
+              animation: cyberShine 3s infinite;
+          }
+  
+          .icon {
+              font-size: 4rem;
+              color: var(--primary);
+              margin-bottom: 2rem;
+          }
+  
+          .role-name {
+              font-size: 2rem;
+              margin-bottom: 1.5rem;
+              font-weight: 600;
+              background: linear-gradient(45deg, var(--primary), var(--secondary));
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+          }
+  
+          .description {
+              color: var(--text);
+              opacity: 0.9;
+              font-size: 1rem;
+              line-height: 1.6;
+              margin-bottom: 2rem;
+              padding: 0 1rem;
+          }
+  
+          .btn {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+              padding: 1rem 2.5rem;
+              background: linear-gradient(45deg, var(--primary), var(--secondary));
+              color: white;
+              border: none;
+              border-radius: 2rem;
+              font-size: 1rem;
+              font-weight: 500;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              text-decoration: none;
+              position: relative;
+              overflow: hidden;
+          }
+  
+          .btn:hover {
+              transform: scale(1.05);
+          }
+  
+          .social-buttons {
+              position: absolute;
+              top: 5rem;
+              right: 2rem;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              z-index: 2;
+              opacity: 0;
+              transform: translateY(30px);
+              transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+          }
+  
+          .social-btn {
+              padding: 1rem;
+              background: rgba(0, 255, 157, 0.3);
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              backdrop-filter: blur(5px);
+              border: 1px solid var(--primary);
+          }
+  
+          .social-btn:hover {
+              transform: scale(1.2);
+              background: rgba(0, 255, 157, 0.5);
+          }
+  
+          @keyframes cyberShine {
+              0% { left: -100%; }
+              100% { left: 200%; }
+          }
+  
+          @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+          }
+  
+          @keyframes pulse {
+              0%, 100% { transform: scale(1); }
+              50% { transform: scale(1.1); }
+          }
+  
+          @media (max-width: 768px) {
+              .title {
+                  font-size: 2.5rem;
+                  padding: 0 1rem;
+              }
+  
+              .login-card {
+                  min-height: 300px;
+                  padding: 1.2rem;
+                  width: 100%;
+              }
+  
+              .courses-btn, .events-btn {
+                  padding: 0.8rem 1.5rem;
+                  font-size: 0.9rem;
+              }
+  
+              .social-buttons {
+                  top: 4rem;
+              }
+          }
+      </style>
+  </head>
+  <body>
+      <canvas class="particles" id="particles"></canvas>
+      
+      <div class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+      </div>
+  
+      <div class="top-bar">
+          <p class="top-bar-text">Welcome to the CMS ERP System</p>
+          <div class="btn-container">
+              <a href="{{ url_for('courses') }}" class="courses-btn">
+                  <i class="fas fa-book-open"></i>
+                  Courses
+              </a>
+              <a href="#" class="events-btn">
+                  <i class="fas fa-calendar-check"></i>
+                  Events
+              </a>
+              <a href="#about" class="about-btn">
+                  <i class="fas fa-info-circle"></i>
+                  About
+              </a>
+              <a href="#contact" class="contact-btn" id="contact-btn">
+                  <i class="fas fa-phone-alt"></i>
+                  Contact
+              </a>
+          </div>
+      </div>
+  
+      <div class="container">
+          <header class="header">
+              <h1 class="title">CMS ERP SYSTEM</h1>
+          </header>
+  
+          <div class="login-options">
+              <div class="login-card" onclick="window.location.href='/student_login'">
+                  <i class="fas fa-user-graduate icon"></i>
+                  <h2 class="role-name">Student Portal</h2>
+                  <p class="description">Access academic records, attendance, course materials, and progress tracking</p>
+                  <a class="btn">
+                      <i class="fas fa-arrow-right"></i>
+                      Enter Dashboard
+                  </a>
+              </div>
+  
+              <div class="login-card" onclick="window.location.href='/faculty_login'">
+                  <i class="fas fa-chalkboard-teacher icon"></i>
+                  <h2 class="role-name">Faculty Portal</h2>
+                  <p class="description">Manage courses, upload grades, track student progress, and analytics</p>
+                  <a class="btn">
+                      <i class="fas fa-arrow-right"></i>
+                      Access Portal
+                  </a>
+              </div>
+          </div>
+      </div>
+  
+      <div class="social-buttons" id="social-buttons">
+          <div class="social-btn" onclick="">
+              <i class="fab fa-instagram"></i>
+          </div>
+          <div class="social-btn" onclick="">
+              <i class="fas fa-envelope"></i>
+          </div>
+      </div>
+  
+      <script>
+          // Theme Toggle
+          const themeToggle = document.getElementById('themeToggle');
+          let isDark = true;
+  
+          themeToggle.addEventListener('click', () => {
+              isDark = !isDark;
+              document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+              themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+              localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          });
+  
+          // Initialize Theme
+          const savedTheme = localStorage.getItem('theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+          isDark = savedTheme === 'dark';
+          themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+  
+          // Cyber Particle Animation
+          const canvas = document.getElementById('particles');
+          const ctx = canvas.getContext('2d');
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+  
+          const particles = [];
+          class Particle {
+              constructor() {
+                  this.reset();
+              }
+  
+              reset() {
+                  this.x = Math.random() * canvas.width;
+                  this.y = Math.random() * canvas.height;
+                  this.velocity = {
+                      x: (Math.random() - 0.5) * 0.5,
+                      y: (Math.random() - 0.5) * 0.5
+                  };
+                  this.alpha = Math.random() * 0.5 + 0.1;
+                  this.radius = Math.random() * 2;
+                  this.color = `hsl(${Math.random() * 360}, 70%, 50%)`;
+              }
+  
+              draw() {
+                  ctx.beginPath();
+                  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                  ctx.fillStyle = this.color;
+                  ctx.globalAlpha = this.alpha;
+                  ctx.fill();
+              }
+  
+              update() {
+                  this.x += this.velocity.x;
+                  this.y += this.velocity.y;
+                  
+                  if(this.x > canvas.width + 50 || this.x < -50 || 
+                     this.y > canvas.height + 50 || this.y < -50) {
+                      this.reset();
+                  }
+                  
+                  this.draw();
+              }
+          }
+  
+          function init() {
+              for(let i = 0; i < 100; i++) {
+                  particles.push(new Particle());
+              }
+          }
+  
+          function animate() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              particles.forEach(particle => particle.update());
+              requestAnimationFrame(animate);
+          }
+  
+          init();
+          animate();
+  
+          window.addEventListener('resize', () => {
+              canvas.width = window.innerWidth;
+              canvas.height = window.innerHeight;
+          });
+  
+          // Social Buttons Interaction
+          const contactBtn = document.getElementById('contact-btn');
+          const socialButtons = document.getElementById('social-buttons');
+          let socialButtonsVisible = false;
+  
+          contactBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              socialButtons.style.opacity = 1;
+              socialButtons.style.transform = 'translateY(0)';
+              socialButtonsVisible = true;
+          });
+  
+          document.addEventListener('click', (e) => {
+              if (socialButtonsVisible && !socialButtons.contains(e.target) && e.target !== contactBtn) {
+                  socialButtons.style.opacity = 0;
+                  socialButtons.style.transform = 'translateY(30px)';
+                  socialButtonsVisible = false;
+              }
+          });
+      </script>
+  </body>
+  </html>
+   -->

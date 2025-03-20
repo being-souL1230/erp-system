@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Courses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212; /* Dark background */
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #5cecf1, #ffffff);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(74, 144, 226, 0.4), 0 0 30px rgba(74, 144, 226, 0.6);
+            margin-bottom: 40px;
+            text-align: center;
+            animation: shineEffect 3s infinite;
+        }
+
+        @keyframes shineEffect {
+            0% { text-shadow: 0 4px 20px rgba(71, 238, 146, 0.4), 0 0 30px rgba(74, 144, 226, 0.6); }
+            50% { text-shadow: 0 0 50px rgba(138, 199, 153, 0.8), 0 0 100px rgba(74, 144, 226, 1); }
+            100% { text-shadow: 0 4px 20px rgba(157, 231, 173, 0.4), 0 0 30px rgba(74, 144, 226, 0.6); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .course {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(74, 144, 226, 0.3);
+        }
+
+        .course h2 {
+            margin: 0;
+            padding: 15px;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #4A90E2, #6C5CE7);
+            color: transparent;
+            -webkit-background-clip: text;
+            text-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course h2:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.6);
+        }
+
+        .semesters {
+            margin-top: 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .semesters.show {
+            max-height: 500px;
+        }
+
+        .semesters li {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 8px 0;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .semesters li:hover {
+            background: rgba(74, 144, 226, 0.15);
+            transform: translateX(10px);
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.2);
+        }
+
+        .semester-content {
+            display: none;
+            background: rgba(40, 40, 40, 0.95);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            border-left: 4px solid #4A90E2;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateX(50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Glow effect for buttons */
+        .semesters li:hover {
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <h1>Academic Programs</h1>
+    <div class="container">
+        <div class="course">
+            <h2 onclick="toggle('bca-mcu')">Bachelor of Computer Applications (Without Maths)</h2>
+            <ul class="semesters" id="bca-mcu">
+                <li onclick="showContent('content-bca-1')">1st Semester</li>
+                <li onclick="showContent('content-bca-2')">2nd Semester</li>
+                <li onclick="showContent('content-bca-3')">3rd Semester</li>
+                <li onclick="showContent('content-bca-4')">4th Semester</li>
+                <li onclick="showContent('content-bca-5')">5th Semester</li>
+                <li onclick="showContent('content-bca-6')">6th Semester</li>
+            </ul>
+        </div>
+
+        <div class="course">
+            <h2 onclick="toggle('bca-csjmu')">Bachelor of Computer Applications (With Maths)</h2>
+            <ul class="semesters" id="bca-csjmu">
+                <li onclick="showContent('content-csjmu-1')">1st Semester</li>
+                <li onclick="showContent('content-csjmu-2')">2nd Semester</li>
+                <li onclick="showContent('content-csjmu-3')">3rd Semester</li>
+                <li onclick="showContent('content-csjmu-4')">4th Semester</li>
+                <li onclick="showContent('content-csjmu-5')">5th Semester</li>
+                <li onclick="showContent('content-csjmu-6')">6th Semester</li>
+            </ul>
+        </div>
+
+        <div class="course">
+            <h2 onclick="toggle('bba')">Bachelor of Business Administration</h2>
+            <ul class="semesters" id="bba">
+                <li onclick="showContent('content-bba-1')">1st Semester</li>
+                <li onclick="showContent('content-bba-2')">2nd Semester</li>
+                <li onclick="showContent('content-bba-3')">3rd Semester</li>
+                <li onclick="showContent('content-bba-4')">4th Semester</li>
+                <li onclick="showContent('content-bba-5')">5th Semester</li>
+                <li onclick="showContent('content-bba-6')">6th Semester</li>
+            </ul>
+        </div>
+
+        <!-- Semester Details -->
+        <div id="content-bca-1" class="semester-content"><h3>BCA MCU 1st Semester - Subjects: </h3> <br> C/C++ Programming <br> Digital Electronics <br> Fundamentals of computer <br>Communicative English <br> Office Automation</div>
+        <div id="content-bca-2" class="semester-content"><h3>BCA MCU 2nd Semester - Subjects: </h3> <br> Data Structures <br> Computer Networks <br> Environmental Science <br> Operating Systems <br> DBMS</div>
+        <div id="content-bca-3" class="semester-content">BCA MCU 3rd Semester - Subjects: Web Development, OOP</div>
+        <div id="content-bca-4" class="semester-content">BCA MCU 4th Semester - Subjects: Java, OS</div>
+        <div id="content-bca-5" class="semester-content">BCA MCU 5th Semester - Subjects: Networking, AI</div>
+        <div id="content-bca-6" class="semester-content">BCA MCU 6th Semester - Subjects: Cloud Computing, Security</div>
+
+        <div id="content-csjmu-1" class="semester-content">BCA CSJMU 1st Semester - Subjects: Basics of IT</div>
+        <div id="content-csjmu-2" class="semester-content">BCA CSJMU 2nd Semester - Subjects: Data Structures</div>
+        <div id="content-csjmu-3" class="semester-content">BCA CSJMU 3rd Semester - Subjects: OS, DBMS</div>
+        <div id="content-csjmu-4" class="semester-content">BCA CSJMU 4th Semester - Subjects: Python, AI</div>
+        <div id="content-csjmu-5" class="semester-content">BCA CSJMU 5th Semester - Subjects: Cyber Security</div>
+        <div id="content-csjmu-6" class="semester-content">BCA CSJMU 6th Semester - Subjects: Cloud Computing</div>
+
+        <div id="content-bba-1" class="semester-content">BBA 1st Semester - Subjects: Business Studies</div>
+        <div id="content-bba-2" class="semester-content">BBA 2nd Semester - Subjects: Financial Management</div>
+    </div>
+
+    <script>
+        function toggle(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('show');
+        }
+
+        function showContent(id) {
+            // Hide all content
+            document.querySelectorAll('.semester-content').forEach(item => {
+                item.style.display = 'none';
+            });
+            
+            // Show selected content
+            const content = document.getElementById(id);
+            content.style.display = 'block';
+            
+            // Smooth scroll to content
+            content.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            // Reset animation
+            content.style.animation = 'none';
+            void content.offsetWidth; // Trigger reflow
+            content.style.animation = 'slideIn 0.5s ease-out';
+        }
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Programs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a2e, #1a1a4a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #42cfda, #f0f0f0);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(108, 92, 231, 0.6);
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .course {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(108, 92, 231, 0.4);
+        }
+
+        .course::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .course:hover::before {
+            left: 100%;
+        }
+
+        .course h2 {
+            margin: 0;
+            padding: 15px;
+            font-size: 1.8rem;
+            background:  linear-gradient(45deg, #42cfda, #f0f0f0);
+            -webkit-background-clip: text;
+            color: transparent;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course h2:hover {
+            text-shadow: 0 0 15px rgba(166, 108, 255, 0.6);
+        }
+
+        .semesters {
+            margin-top: 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .semesters.show {
+            max-height: 1000px;
+        }
+
+        .semesters li {
+            background: rgba(255, 255, 255, 0.08);
+            margin: 10px 0;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .semesters li:hover {
+            background: rgba(108, 92, 231, 0.15);
+            transform: translateX(15px);
+        }
+
+        .semesters li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #6c5ce7;
+            transition: width 0.3s ease;
+        }
+
+        .semesters li:hover::before {
+            width: 6px;
+        }
+
+        .semester-content {
+            display: none;
+            background: rgba(40, 40, 40, 0.4);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 15px;
+            border-left: 4px solid #6c5ce7;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #6c5ce7, #a66cff);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .fa-book {
+            color: #a66cff;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        // Keep JavaScript exactly the same
+        function toggle(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('show');
+        }
+
+        function showContent(id) {
+            document.querySelectorAll('.semester-content').forEach(item => {
+                item.style.display = 'none';
+            });
+
+            const content = document.getElementById(id);
+            content.style.display = 'block';
+
+            content.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            content.style.animation = 'none';
+            void content.offsetWidth;
+            content.style.animation = 'slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
+    </script>
+</body>
+</html>

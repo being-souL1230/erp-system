@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Classes Portal</title>
+    <style>
+        :root {
+            --primary: #7f5af0;
+            --secondary: #2cb67d;
+            --accent: #e53170;
+            --glass: rgba(255, 255, 255, 0.08);
+            --text: #fffffe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Particle Background */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 8rem auto 4rem;
+            padding: 3rem;
+            backdrop-filter: blur(25px);
+            background: var(--glass);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 50px rgba(127, 90, 240, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, 
+                transparent,
+                rgba(127, 90, 240, 0.1),
+                transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        /* Neon Heading */
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(127, 90, 240, 0.3);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        /* Holographic Cards */
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .class-card {
+            background: linear-gradient(145deg, 
+                rgba(127, 90, 240, 0.1),
+                rgba(44, 182, 125, 0.1));
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, 
+                transparent 20%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 80%);
+            animation: hologram 3s linear infinite;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .class-card a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            transition: 0.3s;
+        }
+
+        .class-card:hover a {
+            color: var(--secondary);
+            text-shadow: 0 0 20px rgba(44, 182, 125, 0.5);
+        }
+
+        /* Back Button */
+        .back-button {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem; /* Changed to right for top-right corner */
+            background: var(--primary);
+            color: var(--text);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(127, 90, 240, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 0 15px rgba(127, 90, 240, 0.5);
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 30px rgba(127, 90, 240, 0.3); }
+            100% { text-shadow: 0 0 50px rgba(127, 90, 240, 0.6); }
+        }
+
+        @keyframes hologram {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 6rem 1rem 2rem;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .class-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <!-- Back Button -->
+        <button class="back-button" onclick="window.history.back()">Back</button>
+
+        <h1>CMS Classes Portal</h1>
+        
+        <div class="class-grid">
+            <div id="bba" class="class-card">
+                <a href="{{url_for('bba') }}">BBA</a>
+            </div>
+            
+            <div id="bca-csjmu" class="class-card">
+                <a href="{{url_for('bca_csjmu') }}">BCA-CSJMU</a>
+            </div>
+            
+            <div id="bca-mcu" class="class-card">
+                <a href="{{url_for('mcu_classes') }}">BCA-MCU</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Particle Animation
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x > canvas.width + 20 || this.x < -20 || 
+                    this.y > canvas.height + 20 || this.y < -20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(127, 90, 240, ${this.size/2})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        // Parallax Effect
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            document.querySelector('.container').style.transform = 
+                `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>

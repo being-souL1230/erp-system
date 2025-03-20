@@ -1,0 +1,1145 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>{{ student[2] }}</td>
+                <td>{{ student[3] }}</td>
+                <td>{{ student[4] }}</td>
+                <td>{{ student[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        .option {
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .option:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard</h1>
+        <div class="options">
+            <div class="option">View Assignments</div>
+            <div class="option">Check Attendance</div>
+            <div class="option">Profile</div>
+            <div class="option">Logout</div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- options code  -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #e0e0e0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 30px;
+            background: #2a2a2a;
+            border-radius: 15px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+        .option {
+            padding: 30px;
+            background: linear-gradient(145deg, #2d2d2d, #252525);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid #3a3a3a;
+            font-size: 1.2em;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .option:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(145deg, #363636, #2d2d2d);
+            border-color: #4a4a4a;
+        }
+        .option:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+        .option:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard 👋</h1>
+        <div class="options">
+            <div class="option">📚 View Assignments</div>
+            <div class="option">📅 Check Attendance</div>
+            <div class="option">👤 Profile</div>
+            <div class="option">🚪 Logout</div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+<!-- chatgpt code  -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #e0e0e0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 30px;
+            background: #2a2a2a;
+            border-radius: 15px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+        .option {
+            padding: 30px;
+            background: linear-gradient(145deg, #2d2d2d, #252525);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid #3a3a3a;
+            font-size: 1.2em;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .option:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(145deg, #363636, #2d2d2d);
+            border-color: #4a4a4a;
+        }
+        .option:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+        .option:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard 👋</h1>
+        <div class="options">
+            <div class="option">📚 View Assignments</div>
+ 
+            <div class="option" id="attendanceBox">
+                📅 Check Attendance
+            </div>
+
+            <div class="option">👤 Profile</div>
+            <div class="option">🚪 Logout</div>
+        </div>
+    </div>
+
+    <script>
+        // When the "Check Attendance" box is clicked, navigate to the attendance page
+        document.getElementById("attendanceBox").addEventListener("click", function() {
+            window.location.href = "{{ url_for('check_attendance') }}"; // Redirect to attendance page
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+<!-- logout click  -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #e0e0e0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 30px;
+            background: #2a2a2a;
+            border-radius: 15px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+        .option {
+            padding: 30px;
+            background: linear-gradient(145deg, #2d2d2d, #252525);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid #3a3a3a;
+            font-size: 1.2em;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .option:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(145deg, #363636, #2d2d2d);
+            border-color: #4a4a4a;
+        }
+        .option:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+        .option:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard 👋</h1>
+        <div class="options">
+            <div class="option">📚 View Assignments</div>
+
+            
+            <div class="option" id="attendanceBox">
+                📅 Check Attendance
+            </div>
+
+            <div class="option">👤 Profile</div>
+
+           
+            <div class="option" id="logoutButton">🚪 Logout</div>
+        </div>
+    </div>
+
+    <script>
+        // When the "Check Attendance" box is clicked, navigate to the attendance page
+        document.getElementById("attendanceBox").addEventListener("click", function() {
+            window.location.href = "{{ url_for('check_attendance') }}"; // Redirect to attendance page
+        });
+
+        // When the "Logout" box is clicked, navigate to the login page
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            window.location.href = "login.html"; // Directly referencing the login.html file
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0.8) 100%), 
+                        linear-gradient(135deg, rgba(0, 45, 93, 1) 0%, rgba(0, 205, 255, 0.7) 100%);
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Styling for container */
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+            background: linear-gradient(135deg, rgba(34, 34, 34, 0.8), rgba(0, 45, 93, 0.8));
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color:#877aff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+            color: #fff;
+            box-shadow:  0 0 20px rgb(150 77 255), 0 0 30px rgb(77 143 255 / 70%);
+        }
+
+        .logout-button:hover {
+            background-color: #e03e3e;
+            box-shadow: 0 0 40px rgba(255, 77, 77, 1), 0 0 50px rgba(255, 77, 77, 0.7);
+        }
+
+        /* Navbar styling */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff4d4d;
+        }
+
+        /* Welcome text styling */
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #e0e0e0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .option {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1); /* Transparent white */
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid #3a3a3a;
+            font-size: 1.2em;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0, 205, 255, 0.3); /* Soft glow effect */
+            backdrop-filter: blur(10px); /* Glass effect */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        }
+
+        /* Continuous Glass Shine Animation */
+        @keyframes continuousShine {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+
+        .option:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%; /* Starts off the screen */
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)); /* Dimmed shine */
+            z-index: 1;
+            animation: continuousShine 3s infinite; /* Continuous animation */
+        }
+
+        .option:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 205, 255, 0.4); /* More pronounced hover glow */
+            background: rgba(255, 255, 255, 0.15); 
+        }
+
+        .option:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .option i {
+            font-size: 45px; /* Reduced icon size */
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .option:hover i {
+            transform: scale(1.1); /* Slightly enlarge icon on hover */
+        }
+
+        .option span {
+            margin-top: 5px;
+            font-weight: normal;
+            color: #e0e0e0;
+        }
+
+        /* Particle effect animation (background) */
+        @keyframes particles {
+            0% { opacity: 0; transform: translateY(0) rotate(0); }
+            50% { opacity: 1; transform: translateY(-50px) rotate(180deg); }
+            100% { opacity: 0; transform: translateY(0) rotate(360deg); }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particles span {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(0, 205, 255, 0.7);
+            animation: particles 3s infinite;
+            opacity: 0;
+            animation-delay: -2s;
+        }
+
+        .particles span:nth-child(1) { width: 10px; height: 10px; top: 30%; left: 10%; animation-duration: 3.5s; }
+        .particles span:nth-child(2) { width: 15px; height: 15px; top: 50%; left: 80%; animation-duration: 3s; }
+        .particles span:nth-child(3) { width: 12px; height: 12px; top: 70%; left: 30%; animation-duration: 2.8s; }
+        .particles span:nth-child(4) { width: 8px; height: 8px; top: 20%; left: 60%; animation-duration: 2.6s; }
+    </style>
+</head>
+<body>
+    <!-- Particle effect background -->
+    <div class="particles">
+        <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="container">
+        <a href="{{ url_for('logout') }}" class="logout-button">🚪 Logout</a>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Courses</a>
+            <a href="#">About</a>
+        </div>
+
+        <!-- Welcome Text (moved back to the top) -->
+        <h1>Welcome to Your Dashboard 👋</h1>
+
+        <div class="options">
+            <!-- Updated icon for View Assignments -->
+            <div class="option" onclick="window.location.href='{{ url_for('view_assignments') }}'">
+                <i class="fas fa-clipboard-list"></i> <!-- Changed icon -->
+                <span>View Assignments</span>
+            </div>
+            <div class="option" id="attendanceBox">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Check Attendance</span>
+            </div>
+            <div class="option">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </div>
+            <div class="option" onclick="window.location.href='{{ url_for('coordinators') }}'">
+                <i class="fas fa-users"></i>
+                <span>View Coordinators</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // "Check Attendance" click event
+        document.getElementById("attendanceBox").addEventListener("click", function() {
+            window.location.href = "{{ url_for('check_attendance') }}";
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 36px;
+            margin: 30px 0;
+        }
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 20px;
+            text-align: left;
+            font-size: 16px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e9e9e9;
+        }
+        td {
+            color: #555;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                    <td>{{ student[4] }}</td>
+                    <td>{{ student[6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #6C5CE7;
+            --success-color: #00B894;
+            --warning-color: #FF7675;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2d3436;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: rgb(201, 250, 229);
+            padding: 1.5rem;
+            border-radius: 12px;
+            min-width: 180px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,7,0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr {
+            border-bottom: 1px solid #f1f1f1;
+            transition: all 0.2s ease;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .attendance-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success-color);
+            transition: width 0.5s ease;
+        }
+
+        .badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .high-attendance {
+            background: #e3fcef;
+            color: var(--success-color);
+        }
+
+        .medium-attendance {
+            background: #fff3e0;
+            color: #FFA726;
+        }
+
+        .low-attendance {
+            background: #ffebee;
+            color: var(--warning-color);
+        }
+
+        .search-container {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .search-box {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 10px rgba(74,144,226,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container ">
+        <div class="dashboard-header">
+            <h1>Student Dashboard</h1>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3 style="color:#00B894; font-size: 1.5rem"><b>Total Students</b></h3>
+                    <p style="font-size: 1.8rem; color:#00B894; margin: 0.5rem 0;">{{ students|length }}</p>
+                </div>
+                <div class="stat-box">
+                    <h3 style="color:#00B894; font-size: 1.5rem">Average <br>Attendance</h3>
+                    <p style="font-size: 1.8rem; margin: 0.5rem 0; color:#00B894;">{{ average_attendance }}%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search students...">
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            {{ student[1] }}
+                        </div>
+                    </td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                    <td>{{ student[4] }}</td>
+                    <td>
+                        <div class="attendance-cell">
+                            {% set attendance = student[6] | float %}
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: '{{ attendance }}%"></div>
+                            </div>
+                            <span class="badge {% if attendance >= 75 %}high-attendance{% elif attendance >= 50 %}medium-attendance{% else %}low-attendance{% endif %}">
+                                {{ attendance }}%
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add sorting functionality
+            document.querySelectorAll('th').forEach(headerCell => {
+                headerCell.addEventListener('click', () => {
+                    const table = headerCell.closest('table');
+                    const columnIndex = Array.from(headerCell.parentElement.children).indexOf(headerCell);
+                    const rows = Array.from(table.querySelectorAll('tbody tr'));
+                    
+                    rows.sort((a, b) => {
+                        const aValue = a.children[columnIndex].textContent.trim();
+                        const bValue = b.children[columnIndex].textContent.trim();
+
+                        // Handle numeric values (e.g., Attendance, Age)
+                        if (!isNaN(aValue) && !isNaN(bValue)) {
+                            return parseFloat(aValue) - parseFloat(bValue);
+                        }
+                        // Handle string values (e.g., Name)
+                        return aValue.localeCompare(bValue);
+                    });
+
+                    table.querySelector('tbody').append(...rows);
+                });
+            });
+
+            // Add search functionality
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('tbody tr').forEach(row => {
+                    const name = row.children[1].textContent.toLowerCase();
+                    row.style.display = name.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html> -->

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Schedule | NeoGlass</title>
+    <style>
+        :root {
+            --primary: #7f5af0;
+            --secondary: #2cb67d;
+            --accent: #e53170;
+            --glass: rgba(255, 255, 255, 0.05);
+            --class-bg: rgba(44, 182, 125, 0.1);
+            --class-color: #2cb67d;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: #fffffe;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .navbar {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 0.8rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .navbar a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn {
+            color: var(--accent);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            color: #ff3860;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin: 2rem 0;
+            text-shadow: 0 4px 20px rgba(127, 90, 240, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .schedule-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: block; /* Ensure all cards are visible by default */
+        }
+
+        .schedule-card.hidden {
+            display: none; /* Hide card if it has 'hidden' class */
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-5px);
+            background: rgba(127, 90, 240, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .faculty-name {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .schedule-details div {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-details div:hover {
+            transform: translateX(10px);
+        }
+
+        .day-label {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .time-label {
+            color: var(--accent);
+        }
+
+        .class-label {
+            color: var(--class-color);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .class-content {
+            color: white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 3px;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gradient-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ Navbar Section -->
+<div class="navbar">
+    <a href="javascript:history.back()" class="back-btn">⬅️ Back</a>
+    <div>
+        <a href="javascript:void(0)" class="class-filter" data-filter="BCA-MCU">BCA-MCU</a>
+        <a href="javascript:void(0)" class="class-filter" data-filter="BCA-CSJMU">BCA-CSJMU</a>
+        <a href="javascript:void(0)" class="class-filter" data-filter="BBA">BBA</a>
+        <a href="javascript:void(0)" class="class-filter" data-filter="All Classes">All Classes</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="gradient-border">
+        <h1>Faculty Schedule</h1>
+    </div>
+
+    <div class="schedule-grid">
+        <!-- Schedule Cards -->
+        {% for row in schedule %}
+        <div class="schedule-card" data-class="{{ row[4] }}">
+            <div class="faculty-name">{{ row[0] }}</div>
+            <div class="schedule-details">
+                <div><span class="day-label">Day:</span> {{ row[1] }}</div>
+                <div><span class="time-label">Time:</span> {{ row[2] }}</div>
+                <div>{{ row[3] }}</div>
+                <div class="class-label">Class: <span class="class-content">{{ row[4] }}</span></div>
+            </div>
+        </div>
+        {% else %}
+        <div class="schedule-card">
+            <div class="faculty-name">No Schedule Found</div>
+            <div class="schedule-details">
+                Please check back later
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    const filterButtons = document.querySelectorAll('.class-filter');
+    const scheduleCards = document.querySelectorAll('.schedule-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const filterValue = event.target.getAttribute('data-filter').trim(); // Trim spaces from the filter value
+
+            // Reset visibility of all cards
+            scheduleCards.forEach(card => {
+                card.classList.remove('hidden'); // Show all cards initially
+            });
+
+            if (filterValue !== 'All Classes') {
+                // Hide cards that do not match the selected class
+                scheduleCards.forEach(card => {
+                    const cardClass = card.getAttribute('data-class').trim(); // Trim spaces from the card class
+                    if (cardClass !== filterValue) {
+                        card.classList.add('hidden'); // Hide cards that don't match
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

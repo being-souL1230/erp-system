@@ -1,0 +1,556 @@
+<!-- light theme  -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c; /* Added for red */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--secondary-color) 50%, transparent 100%);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            position: relative;
+        }
+
+        th {
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        tbody tr:hover {
+            background: rgba(52, 152, 219, 0.05);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        tbody td {
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        tbody td::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--secondary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        tbody tr:hover td::before {
+            opacity: 1;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: all 0.3s ease;
+        }
+
+        .status.submitted {
+            background: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+        }
+
+        .status.pending {
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+
+        .status.late {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--accent-color);
+        }
+
+        .status.not-submitted {
+            background: rgba(231, 76, 60, 0.2); /* Red background for not submitted */
+            color: var(--error-color); /* Red text for not submitted */
+        }
+
+        .subject-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .subject-icon {
+            font-size: 1.2em;
+            color: var(--secondary-color);
+        }
+
+        @keyframes shine {
+            0% { background-position: -200px; }
+            100% { background-position: 200px; }
+        }
+
+        .glow-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="glow-text">Assignments Dashboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment[0] }}</td>
+                    <td class="subject-cell">
+                        <i class="fas fa-book-open subject-icon"></i>
+                        {{ assignment[2] }}
+                    </td>
+                    <td>
+                        <span class="status {{ assignment[3].lower().replace(' ', '-') }}">
+                            {{ assignment[3] }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Add click animation to table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Add smooth scroll to container
+        window.addEventListener('load', () => {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+<!-- dark theme  -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Dark Theme Variables */
+        :root {
+            --primary: #7c3aed;
+            --secondary: #a855f7;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #e2e8f0;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c; /* Red for error */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--secondary) 50%, transparent 100%);
+        }
+
+        /* Search Bar Styling */
+        .search-box {
+            width: 80%;
+            max-width: 500px;
+            padding: 10px 15px;
+            margin: 20px auto;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+            background: rgba(30, 41, 59, 1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            position: relative;
+        }
+
+        th {
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        tbody tr:hover {
+            background: rgba(55, 65, 81, 0.7);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        tbody td {
+            position: relative;
+            color: var(--light);
+        }
+
+        tbody td::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0%;
+            background: var(--secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        tbody tr:hover td::before {
+            opacity: 1;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: all 0.3s ease;
+        }
+
+        .status.submitted {
+            background: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+        }
+
+        .status.pending {
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+
+        .status.late {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--accent-color);
+        }
+
+        .status.not-submitted {
+            background: rgba(231, 76, 60, 0.2); /* Red background for not submitted */
+            color: var(--error-color); /* Red text for not submitted */
+        }
+
+        .subject-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .subject-icon {
+            font-size: 1.2em;
+            color: var(--secondary);
+        }
+
+        @keyframes shine {
+            0% { background-position: -200px; }
+            100% { background-position: 200px; }
+        }
+
+        .glow-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="glow-text">Assignments Dashboard</h2>
+
+        <!-- Search Bar -->
+        <input type="text" class="search-box" id="searchInput" placeholder="Search by ID, Subject, or Status" onkeyup="filterTable()">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="assignmentTable">
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment[0] }}</td>
+                    <td class="subject-cell">
+                        <i class="fas fa-book-open subject-icon"></i>
+                        {{ assignment[2] }}
+                    </td>
+                    <td>
+                        <span class="status {{ assignment[3].lower().replace(' ', '-') }}">
+                            {{ assignment[3] }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('assignmentTable');
+            const tr = table.getElementsByTagName('tr');
+            
+            for (let i = 0; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td');
+                let match = false;
+                
+                // Loop through each cell and check if it matches the search filter
+                for (let j = 0; j < td.length; j++) {
+                    if (td[j].textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                        break;
+                    }
+                }
+
+                tr[i].style.display = match ? '' : 'none';
+            }
+        }
+
+        // Add click animation to table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Add smooth scroll to container
+        window.addEventListener('load', () => {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

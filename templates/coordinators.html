@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Coordinators List</title>
+    <style>
+        :root {
+            --primary: #6A4C9C; /* Dark Purple */
+            --secondary: #9B66A4; /* Lighter Purple */
+            --accent: #FF6F61; /* Coral Accent */
+            --light: #F8F8F8; /* Light Background */
+            --dark: #2C2C2C; /* Dark Background */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c2c2c, #3d3d3d);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            color: #f1f1f1;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg,  #d4f1f5, #366aff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .course-section {
+            background: var(--dark);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .course-section:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .course-section h3 {
+            color: #80a9c4;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 4px solid #366aff;
+            font-weight: 600;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: var(--dark);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+        }
+
+        .collapsible:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(10px);
+        }
+
+        .collapsible::after {
+            content: '▼';
+            color: var(--accent);
+            transition: transform 0.3s ease;
+            text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+        }
+
+        .collapsible.active::after {
+            transform: rotate(180deg);
+        }
+
+        .coordinator-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .coordinator-list.active {
+            max-height: 1000px;
+        }
+
+        .coordinator-list li {
+            padding: 1.2rem;
+            background: var(--dark);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+        }
+
+        .coordinator-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+            background: var(--secondary);
+            color: #fff;
+            text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+        }
+
+        .coordinator-list li::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+        }
+
+        .coordinator-list li span {
+            color: var(--primary);
+            margin-left: auto;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .coordinator-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>📚 Course Coordinators 2024-25 🌟</h2>
+
+        <!-- BBA Section -->
+        <div class="course-section">
+            <h3>🎓 BBA Program</h3>
+
+            <div class="collapsible">Class Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Atira Majeed <span>(II-A)</span></li>
+                <li>Aarish Tariq <span>(II-B)</span></li>
+                <li>Amaan Shekh <span>(II-C)</span></li>
+                <li>Mantasha Anees <span>(IV-A)</span></li>
+                <li>Naina Trivedi <span>(IV-B)</span></li>
+                <li>Zoya Alam <span>(VI)</span></li>
+            </ul>
+
+            <div class="collapsible">Academic Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Tanishka Gupta <span>(II-A)</span></li>
+                <li>Advik Omer <span>(II-B)</span></li>
+                <li>Navitka Shukla <span>(II-C)</span></li>
+                <li>Gauri Singh <span>(IV-A)</span></li>
+                <li>Khushi Agarwal <span>(IV-B)</span></li>
+                <li>Lamia Farid <span>(VI)</span></li>
+            </ul>
+
+            <div class="collapsible">Discipline Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Nayyara <span>(II-A)</span></li>
+                <li>Mohammad Ayan <span>(II-B)</span></li>
+                <li>Vihaan Mishra <span>(II-C)</span></li>
+                <li>Vansh Srivastava <span>(IV-A)</span></li>
+                <li>Mahek Agarwal <span>(IV-B)</span></li>
+                <li>Hamsha Hanif <span>(VI)</span></li>
+            </ul>
+
+            <div class="collapsible">Sports Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Mohd Huzaif <span>(II-A)</span></li>
+                <li>Alok Kumar Prajapati <span>(II-B)</span></li>
+                <li>Sajal Katiyar <span>(II-C)</span></li>
+                <li>Swati Verma <span>(IV-A)</span></li>
+                <li>Tanish Jaiswal <span>(IV-B)</span></li>
+                <li>Divyanshi <span>(VI)</span></li>
+            </ul>
+
+            <div class="collapsible">Cultural Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Khizra Khan <span>(II-A)</span></li>
+                <li>Aryan Shukla <span>(II-B)</span></li>
+                <li>Vanshika Jaiswal <span>(II-C)</span></li>
+                <li>Siya Yadav <span>(IV-A)</span></li>
+                <li>Anshika Singh Gaur <span>(IV-B)</span></li>
+                <li>Muskan Gautam <span>(VI)</span></li>
+            </ul>
+        </div>
+
+        <!-- BCA-CSJMU Section -->
+        <div class="course-section">
+            <h3>💻 BCA-CSJMU</h3>
+
+            <div class="collapsible">Class Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Mariyam Faiz Ansari <span>(II-A)</span></li>
+                <li>Mohd Almas <span>(II-B)</span></li>
+                <li>Mohd Ayan <span>(II-C)</span></li>
+                <li>Zainab Parveen <span>(IV-A)</span></li>
+                <li>Akarsh Gupta <span>(IV-B)</span></li>
+            </ul>
+
+            <div class="collapsible">Academic Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Srishti Gupta <span>(I-A)</span></li>
+                <li>Rehan Khan <span>(II-B)</span></li>
+                <li>Priyanshi <span>(II-C)</span></li>
+                <li>Mansi <span>(IV-A)</span></li>
+                <li>Devansh Mishra <span>(IV-B)</span></li>
+            </ul>
+
+            <div class="collapsible">Discipline Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Kirti <span>(II-A)</span></li>
+                <li>Harshit Gupta <span>(II-B)</span></li>
+                <li>Mahima Kashyap <span>(II-C)</span></li>
+                <li>Dhruv Gautam <span>(IV-A)</span></li>
+                <li>Anurag Mishra <span>(IV-B)</span></li>
+            </ul>
+
+            <div class="collapsible">Sports Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Sanchit Gupta <span>(II-A)</span></li>
+                <li>Om Srivastava <span>(II-B)</span></li>
+                <li>Anubhav Sharma <span>(II-C)</span></li>
+                <li>Abhishek Srivastava <span>(IV-A)</span></li>
+                <li>Aman Verma <span>(IV-B)</span></li>
+            </ul>
+
+            <div class="collapsible">Cultural Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Uday Pratap Singh <span>(II-A)</span></li>
+                <li>Shubham Maurya <span>(II-B)</span></li>
+                <li>Riya Verma <span>(II-C)</span></li>
+                <li>(IV-A: Empty)</li>
+                <li>Zareen <span>(IV-B)</span></li>
+            </ul>
+        </div>
+
+        <!-- BCA-MCU Section -->
+        <div class="course-section">
+            <h3>📊 BCA-MCU</h3>
+
+            <div class="collapsible">Class Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Keshav Mishra <span>(VI)</span></li>
+                <li>Priya <span>(II)</span></li>
+                <li>Raghav <span>(IV)</span></li>
+            </ul>
+
+            <div class="collapsible">Academic Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Samarpita Verma <span>(VI)</span></li>
+                <li>Emaisha Khan <span>(II)</span></li>
+                <li>Krishna Kumar Singh <span>(IV)</span></li>
+            </ul>
+
+            <div class="collapsible">Discipline Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Akashi Gaur <span>(VI)</span></li>
+                <li>Zoya Ali <span>(II)</span></li>
+                <li>Anuj Chaurasia <span>(IV)</span></li>
+            </ul>
+
+            <div class="collapsible">Sports Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Priyanka Yadav <span>(VI)</span></li>
+                <li>Vasu Sonker <span>(II)</span></li>
+                <li>Krishna Jaiswal <span>(IV)</span></li>
+            </ul>
+
+            <div class="collapsible">Cultural Coordinators</div>
+            <ul class="coordinator-list">
+                <li>Shalini Jaiswal <span>(VI)</span></li>
+                <li>Kavya Pandey<span>(II)</span></li>
+                <li>Mayank Gupta <span>(IV)</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.collapsible').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+                const content = button.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

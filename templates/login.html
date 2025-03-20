@@ -1,0 +1,367 @@
+<!-- animated login page only
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Student Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+        .container:hover {
+            transform: scale(1);
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            position: relative;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #5a67d8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.5);
+        }
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Login</h2>
+        <form action="/login" method="post" id="loginForm">
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" id="loginBtn">Login</button>
+
+            <style>
+                button {
+                    background: #667eea;
+                    color: white;
+                    border: none;
+                    padding: 1rem;
+                    font-size: 1rem;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    width: 100%;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+                button span {
+                    display: inline-block;
+                    position: relative;
+                    transition: transform 0.3s ease;
+                }
+                button:active span {
+                    transform: translateY(-10px);
+                }
+            </style>
+        </form>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.innerHTML= '<span>Login</span>';
+        
+        loginForm.addEventListener('submit', (e) => {
+            if (document.getElementById('email').value === '' || document.getElementById('password').value === '') {
+                e.preventDefault();
+                loginBtn.classList.add('shake');
+                setTimeout(() => loginBtn.classList.remove('shake'), 300);
+            }
+        });
+    </script>
+</body>
+</html>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.3); /* Glass effect transparency */
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(12px); /* Glass effect */
+            box-shadow: 0 0 30px rgba(113, 73, 255, 0.2);
+            width: 380px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(113, 73, 255, 0.3);
+        }
+
+        /* Slow and Dim Shine Effect */
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(113, 73, 255, 0.1), rgba(255, 255, 255, 0.05));
+            animation: shineEffect 6s infinite ease-in-out; /* Slower speed */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes shineEffect {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.8rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            padding-left: 45px;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 15px rgba(113, 73, 255, 0.2);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.6);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glass effect on button with slow animation */
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            animation: buttonShineEffect 6s infinite ease-in-out; /* Slightly faster shine effect */
+        }
+
+        @keyframes buttonShineEffect {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: -150%; }
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(113, 73, 255, 0.3);
+        }
+
+        button:hover::before {
+            left: 150%;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes buttonPress {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome Back 🔒</h2>
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <i>📧</i>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <i>🔑</i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" onclick="this.style.animation='buttonPress 0.4s ease'">
+                Login Now
+            </button>
+        </form>
+    </div>
+</body>
+</html>
