@@ -29,7 +29,6 @@ A complete **Student ERP system** built using **Flask**, **MySQL**, and **HTML/C
 | MySQL | Database |
 | HTML/CSS/JS | Frontend |
 | Jinja2 | Templating |
-| UI Design |
 
 ---
 
